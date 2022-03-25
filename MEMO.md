@@ -17,6 +17,14 @@ docker psでコンテナ確認<br>
 `git push --delete origin ブランチ名`
 
 
+## MVC作成
+#### コントローラーの作成
+`php artisan make:controller hogeController`
+
+#### モデルの作成
+`php artisan make:model Hoge`
+
+
 ## Seeder/Factoryのテストデータ作成
 #### sedder file作成
 `php artisan make:seeder hogeSeeder`
