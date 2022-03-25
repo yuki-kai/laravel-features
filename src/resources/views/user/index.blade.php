@@ -32,11 +32,10 @@
                             <form action="" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm">更新</button>
                             </form>
-                            <form action="" method="POST">
+                            <form action="{{ route('user.delete', $user->id) }}" method="POST">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-primary btn-sm"
-                                onclick="return confirm('削除してもよろしいですか？')">
-                                    削除
+                                onclick="return confirm('削除してもよろしいですか？')">削除
                                 </button>
                             </form>
                         </div>
