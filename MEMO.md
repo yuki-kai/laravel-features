@@ -17,6 +17,13 @@ docker psでコンテナ確認<br>
 `git push --delete origin ブランチ名`
 
 
+## MySQL系
+#### rootユーザーでログイン
+`mysql -u root -p`
+
+#### 
+
+
 ## MVC作成
 #### コントローラーの作成
 `php artisan make:controller HogeController`

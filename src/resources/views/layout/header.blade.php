@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS 読み込み -->
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- fontawesome 読み込み -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <!-- jQuery 読み込み -->
@@ -18,7 +21,21 @@
 <body>
 
 <header class="sticky-top">
+    <div class="header-wrapper">
+        <div class="header-left">
+            <h1><a href="{{ route('user.index') }}">Laravel Features</a></h1>
+        </div>
+        <div class="header-right">
+            {{-- <span>ユーザー：</span> --}}
+        </div>
+    </div>
+
     <ul class="nav nav-tabs">
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="{{ route('user.index') }}" role="button">
+                ユーザ一覧
+            </a>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 動画管理画面
