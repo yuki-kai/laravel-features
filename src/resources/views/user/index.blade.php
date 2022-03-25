@@ -14,14 +14,8 @@
 
     <table class="table table-hover" style="table-layout:fixed;">
         <thead>
-            {{-- <p>
-                全{{ $searched_users->total() }}件中
-                {{ ($searched_users->currentPage() -1) * $searched_users->perPage() + 1 }} -
-                {{ (($searched_users->currentPage() -1) * $searched_users->perPage() + 1) +
-                (count($searched_users) -1) }}件
-            </p> --}}
             <tr>
-                <th>ID</th>
+                <th>@sortablelink('id', 'ID')</th>
                 <th>名前</th>
                 <th>メールアドレス</th>
                 <th>操作</th>
@@ -59,6 +53,12 @@
     </table>
 
     <div class="d-flex justify-content-center">
+        <span>
+            全{{ $searched_users->total() }}件中
+            {{ ($searched_users->currentPage() -1) * $searched_users->perPage() + 1 }} -
+            {{ (($searched_users->currentPage() -1) * $searched_users->perPage() + 1) +
+            (count($searched_users) - 1) }}件
+        </span>
         {{ $searched_users->appends(request()->query())->links('vendor.pagination.default') }}
     </div>
 </div>

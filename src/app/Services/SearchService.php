@@ -22,7 +22,7 @@ class SearchService
         // 名前かメールアドレスで検索された時
         if ($keyword) {
             $searched_users = $query
-                // ->sortable()
+                ->sortable()
                 ->where('name', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('email', 'LIKE', '%'.$keyword.'%')
                 ->paginate(10);
@@ -31,7 +31,7 @@ class SearchService
         // 検索されていない時
         if (empty($searched_users)) {
             $searched_users = $query
-                // ->sortable()
+                ->sortable()
                 // ->where('name', $name)
                 ->paginate(10);
         }
