@@ -33,10 +33,14 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        // dd($id);
         // ユーザー削除
         UserService::deleteUser($id);
 
-        return redirect()->route('user.index');
+        // 削除時のURLかデフォルトのユーザー一覧に遷移
+        if (session('previous_url')) {
+            return redirect(session('previous_url'));
+        } else {
+            return redirect()->route('user.index');
+        }
     }
 }

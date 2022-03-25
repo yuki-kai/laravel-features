@@ -8,10 +8,11 @@ $(function() {
     });
 
     // 削除モーダルのOKボタンを押したら
-    $('#deleteSubmit').on('click', function(e) {
+    $('#deleteSubmit').on('click', function() {
+        // 二重送信を防止
+        $(this).prop('disabled', true);
         const form = document.getElementById('delete_form');
         form.action = '/delete/user/' + user_id;
-        console.log(form)
         form.submit();
     });
 

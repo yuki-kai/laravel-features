@@ -28,13 +28,11 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <div class="table-ctl">
-                            {{-- <form action="" method="GET">
+                        <div class="">
+                            <form action="" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm">更新</button>
-                            </form> --}}
+                            </form>
                             <button class="btn btn-primary btn-sm delete" data-bs-id="{{ $user->id }}" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>
-                            {{-- <button class="btn btn-primary btn-sm delete" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button> --}}
-                            {{-- <form action="{{ route('user.delete', $user->id) }}" method="POST">@csrf @method('DELETE')</form> --}}
                         </div>
                     </td>
                 </tr>
@@ -72,19 +70,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
-
-                {{-- <form action="{{ route('user.delete', $user_id = 0) }}" method="POST">
-                    @csrf @method('DELETE') --}}
-                    <button type="submit" class="btn btn-primary" id="deleteSubmit">OK</button>
-                {{-- </form> --}}
+                <button type="submit" class="btn btn-primary" id="deleteSubmit">OK</button>
             </div>
         </div>
     </div>
 </div>
 
-<form action='' id='delete_form' method='POST'>
-    @csrf
-</form>
+<form action='' id='delete_form' method='POST'>@csrf</form>
 
 <script src="{{ asset('js/index.js') }}"></script>
 

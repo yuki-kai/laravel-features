@@ -14,7 +14,7 @@ class UserService
     /**
      * ユーザ一削除機能
      *
-     * @return
+     * @param user_id
      */
     public static function deleteUser($id)
     {
@@ -22,6 +22,9 @@ class UserService
         // DB::listen(function ($query) {
         //     Log::info("Query Time:{$query->time}s] $query->sql");
         // });
+
+        // 直前のURLをセッションに保存
+        session()->put('previous_url', url()->previous());
 
         User::findOrFail($id)->delete();
     }
