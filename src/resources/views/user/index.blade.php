@@ -58,9 +58,9 @@
         </tbody>
     </table>
 
-    {{-- <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         {{ $searched_users->appends(request()->query())->links('vendor.pagination.default') }}
-    </div> --}}
+    </div>
 </div>
 
 @endsection
