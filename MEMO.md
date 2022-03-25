@@ -19,7 +19,7 @@ docker psでコンテナ確認<br>
 
 ## MVC作成
 #### コントローラーの作成
-`php artisan make:controller hogeController`
+`php artisan make:controller HogeController`
 
 #### モデルの作成
 `php artisan make:model Hoge`
