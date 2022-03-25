@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\SearchService;
 
 class UserController extends Controller
 {
@@ -11,8 +12,11 @@ class UserController extends Controller
      *
      * @return view
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.index');
+        $keyword  = $request->input('keyword');
+        list($searched_users) = SearchService::userSearch($keyword);
+
+        return view('user.index', compact('searched_users'));
     }
 }
