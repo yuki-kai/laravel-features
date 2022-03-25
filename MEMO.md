@@ -5,7 +5,7 @@
 `docker-compose up -d`
 
 #### コンテナに入る
-docker psでコンテナ確認
+docker psでコンテナ確認<br>
 `docker-compose exec コンテナ名 bash`
 
 
