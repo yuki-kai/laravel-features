@@ -16,6 +16,9 @@ docker psでコンテナ確認<br>
 #### リモートブランチの削除
 `git push --delete origin ブランチ名`
 
+#### リモートリポジトリのファイルをgit管理から外す
+`git rm --cached 削除したいファイル`
+
 
 ## MySQL系
 #### rootユーザーでログイン
