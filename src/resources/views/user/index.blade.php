@@ -29,15 +29,12 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         <div class="table-ctl">
-                            <form action="" method="GET">
+                            {{-- <form action="" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm">更新</button>
-                            </form>
-                            <form action="{{ route('user.delete', $user->id) }}" method="POST">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-primary btn-sm"
-                                onclick="return confirm('削除してもよろしいですか？')">削除
-                                </button>
-                            </form>
+                            </form> --}}
+                            <button class="btn btn-primary btn-sm delete" data-bs-id="{{ $user->id }}" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>
+                            {{-- <button class="btn btn-primary btn-sm delete" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button> --}}
+                            {{-- <form action="{{ route('user.delete', $user->id) }}" method="POST">@csrf @method('DELETE')</form> --}}
                         </div>
                     </td>
                 </tr>
@@ -61,5 +58,35 @@
         {{ $searched_users->appends(request()->query())->links('vendor.pagination.default') }}
     </div>
 </div>
+
+{{-- 削除確認モーダル --}}
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">調査項目削除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>削除してよろしいですか？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+
+                {{-- <form action="{{ route('user.delete', $user_id = 0) }}" method="POST">
+                    @csrf @method('DELETE') --}}
+                    <button type="submit" class="btn btn-primary" id="deleteSubmit">OK</button>
+                {{-- </form> --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action='' id='delete_form' method='POST'>
+    @csrf
+</form>
+
+<script src="{{ asset('js/index.js') }}"></script>
+
 
 @endsection

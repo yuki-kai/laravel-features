@@ -15,4 +15,4 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [UserController::class, 'index'])->name('user.index');
-Route::delete('/delete/user/{id}', [UserController::class, 'delete'])->name('user.delete');
+Route::post('/delete/user/{id}', [UserController::class, 'delete'])->name('user.delete');

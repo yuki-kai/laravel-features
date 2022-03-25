@@ -33,6 +33,7 @@ class UserController extends Controller
      */
     public function delete($id)
     {
+        // dd($id);
         // ユーザー削除
         UserService::deleteUser($id);
 
