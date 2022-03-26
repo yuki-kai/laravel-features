@@ -14,7 +14,7 @@ use App\Services\UserService;
 class UserController extends Controller
 {
     /**
-     * ユーザ一覧画面
+     * ユーザー一覧画面
      *
      * @return view
      */
@@ -27,6 +27,36 @@ class UserController extends Controller
     }
 
     /**
+     * ユーザ一更新画面
+     *
+     * @return view
+     */
+    public function edit($id)
+    {
+        // 直前のURLをセッションに保存
+        session()->put('previous_url', url()->previous());
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
+    }
+
+    /**
+     * ユーザ一更新
+     *
+     * @return view
+     */
+    public function update(Request $request)
+    {
+        // ユーザー更新
+        UserService::updateUser($request);
+        // セッションのURLかデフォルトのユーザー一覧に遷移
+        if (session('previous_url')) {
+            return redirect(session('previous_url'));
+        } else {
+            return redirect()->route('user.index');
+        }
+    }
+
+    /**
      * ユーザ一削除
      *
      * @return view
@@ -35,8 +65,7 @@ class UserController extends Controller
     {
         // ユーザー削除
         UserService::deleteUser($id);
-
-        // 削除時のURLかデフォルトのユーザー一覧に遷移
+        // セッションのURLかデフォルトのユーザー一覧に遷移
         if (session('previous_url')) {
             return redirect(session('previous_url'));
         } else {
