@@ -33,12 +33,12 @@
     <ul class="nav nav-tabs">
         <li class="nav-item dropdown">
             <a class="nav-link" href="{{ route('user.index') }}" role="button">
-                ユーザ一覧
+                ユーザ一覧全般機能
             </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                動画管理画面
+                スクラッチのログイン機能
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="">動画新規作成画面</a></li>
@@ -47,11 +47,11 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                デジタルサイネージ管理画面
+                サムネイル自動生成機能
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="">デジタルサイネージ登録画面</a></li>
-                <li><a class="dropdown-item" href="">デジタルサイネージ一覧画面</a></li>
+                <li><a class="dropdown-item" href="{{ route('video.index') }}">動画一覧画面</a></li>
             </ul>
         </li>
     </ul>
