@@ -19,4 +19,14 @@ class VideoController extends Controller
     {
         return view('video.index');
     }
+
+    /**
+     * 動画作成画面
+     *
+     * @return view
+     */
+    public function create()
+    {
+        return view('video.create');
+    }
 }
