@@ -1,5 +1,5 @@
 @extends('layout.header')
-@section('title', 'ユーザ一覧画面')
+@section('title', 'ユーザー一覧画面')
 @section('content')
 
 <div class="container">
@@ -29,7 +29,7 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         <div class="">
-                            <form action="" method="GET">
+                            <form action="{{ route('user.edit', $user->id) }}" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm">更新</button>
                             </form>
                             <button class="btn btn-primary btn-sm delete" data-bs-id="{{ $user->id }}" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>

@@ -12,13 +12,31 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class UserService
 {
     /**
-     * ユーザ一削除機能
+     * ユーザ一更新処理
+     *
+     * @param user_id
+     */
+    public static function updateUser($request)
+    {
+        // 発行されるSQL文をログに吐く
+        // DB::listen(function ($query) {
+        //     Log::info("Query Time:{$query->time}s] $query->sql");
+        // });
+
+        User::findOrFail($request->id)->update([
+            'name'  => $request->name,
+            'email' => $request->email,
+        ]);
+    }
+
+    /**
+     * ユーザ一削除処理
      *
      * @param user_id
      */
     public static function deleteUser($id)
     {
-        // ログに発行されるSQL文を吐く
+        // 発行されるSQL文をログに吐く
         // DB::listen(function ($query) {
         //     Log::info("Query Time:{$query->time}s] $query->sql");
         // });
