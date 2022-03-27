@@ -1,0 +1,12 @@
+
+/* バリデーション */
+.validation {
+    background-color: #FFD5D5;
+    border: 1px solid #FF7272;
+    color: #FF7272;
+}
+.validation::placeholder {
+    color: #FF7272;
+}
+
+
