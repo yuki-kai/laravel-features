@@ -24,7 +24,7 @@
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">動画ファイル</label>
-                <input type="file" name="" class="form-control">
+                <input type="file" name="" id="video_upload" class="form-control">
             </div>
 
             {{-- 動画が選択されたらプレビューを表示 --}}
@@ -32,21 +32,23 @@
                 <video
                     hidden
                     autoplay muted loop
-                    id=""
+                    id="video_preview"
                     style="width:240px; height:180px;"
                 ></video>
+                {{-- サムネイル自動生成用 --}}
+                <canvas hidden type="hidden" id="canvas" class="canvas"></canvas>
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">動画サムネイル (未選択の場合、自動的に動画の先頭が設定されます)</label>
-                <input type="file" name="" class="form-control">
+                <input type="file" name="" id="thumb_upload" class="form-control">
             </div>
 
             {{-- サムネイルが選択されたらプレビューを表示 --}}
             <div class="d-flex justify-content-center">
                 <img
                     hidden
-                    id=""
+                    id="thumb_preview"
                     style="width:240px; height:180px;"
                 >
             </div>

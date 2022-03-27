@@ -34,6 +34,13 @@ docker psでコンテナ確認<br>
 #### モデルの作成
 `php artisan make:model Hoge`
 
+#### マイグレーションの作成
+`php artisan make:migration create_テーブル名(hoges)_table`
+
+#### マイグレーションのやり直し (テストデータも作成)
+`php artisan migrate:fresh --seed`
+
+
 
 ## Seeder/Factoryのテストデータ作成
 #### sedder file作成
