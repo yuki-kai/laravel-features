@@ -15,4 +15,5 @@ Route::post('/delete/user/{id}', [UserController::class, 'delete'])->name('user.
 // サムネイル自動生成
 Route::get('/video', [VideoController::class, 'index'])->name('video.index');
 Route::get('/video/create', [VideoController::class, 'create'])->name('video.create');
+Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 

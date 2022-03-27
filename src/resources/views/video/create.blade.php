@@ -16,7 +16,7 @@
 <div class="container mt-4">
     <div class="border p-4">
         <h1 class="h4 mb-4 font-weight-bold">動画登録画面</h1>
-        {{-- <form action="" id="form" name="video_form" enctype="multipart/form-data" method="POST"> --}}
+        <form action="" id="form" name="video_form" enctype="multipart/form-data" method="POST">
         @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">動画名</label>
@@ -25,7 +25,8 @@
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">動画ファイル</label>
-                <input type="file" accept="video/mp4,video/qt" name="" id="video_upload" class="form-control">
+                {{-- <input type="file" accept="video/mp4,video/qt" name="video_path" id="video_upload" class="form-control"> --}}
+                {{ Form::file('video', ['class' => 'form-control', 'id' => 'video_upload', 'accept' => 'video/mp4,video/qt']) }}
             </div>
 
             {{-- 動画が選択されたらプレビューを表示 --}}
@@ -42,7 +43,8 @@
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">動画サムネイル (未選択の場合、自動的に動画の先頭が設定されます)</label>
-                <input type="file" name="" id="thumb_upload" class="form-control">
+                {{-- <input type="file" accept="image/*" name="thumb_path" id="thumb_upload" class="form-control"> --}}
+                {{ Form::file('thumb', ['class' => 'form-control', 'id' => 'thumb_upload', 'accept' => 'image/*']) }}
             </div>
 
             {{-- サムネイルが選択されたらプレビューを表示 --}}
@@ -53,7 +55,7 @@
                     style="width:240px; height:180px;"
                 >
             </div>
-            <button id="submit" class="btn btn-primary">登録</button>
+            <button id="confirm" class="btn btn-primary">登録</button>
 
             {{-- 確認モーダル --}}
             <div class="modal fade" id="confirm_modal" tabindex="-1">
@@ -87,7 +89,7 @@
                 </div>
             </div>
 
-        {{-- </form> --}}
+        </form>
     </div>
 </div>
 

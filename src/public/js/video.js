@@ -41,16 +41,15 @@ video_preview.addEventListener('playing', function () {
 }, false);
 
 // 「登録」ボタン押下時のハンドラー
-$('#submit').on('click', function() {
+$('#confirm').on('click', function(e) {
+    // バリデーションを行うために処理を一旦止める
+    e.preventDefault();
+    // バリデーション
     let title_check = titleValidation();
     let video_check = videoValidation();
-    console.log(title_check, video_check)
     if (title_check && video_check) {
-        console.log('通過')
-        confirmModal();
-        removeValidation();
-    } else {
-        console.log('バリデーション失敗')
+        confirmModal(); // モーダル表示
+        removeValidation(); // バリデーション解除
     }
 });
 
@@ -100,3 +99,45 @@ const confirmModal = () => {
         $('#confirm_thumb').text('未選択');
     }
 }
+
+// 保存が押されたらajaxでformをPOST送信
+$('#submit').on('click', function (e) {
+    e.preventDefault();
+    let formData = new FormData($('form').get(0));
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: 'POST',
+        url: '/video/store',
+        processData: false,
+        contentType: false,
+        data: formData,
+        xhr: function() {
+            XHR = $.ajaxSettings.xhr();
+            if (XHR.upload){
+                XHR.upload.addEventListener('progress',function(e) {
+                    var progVal = parseInt(e.loaded / e.total * 100) ;
+                    var progressBar = document.getElementById('prog');
+                    var progressValue = document.getElementById('pv');
+                    progressBar.value = progVal;
+                    progressValue.innerHTML = progVal + '%';
+                }, false);
+            }
+            return XHR;
+        }, success: function (data) {
+            $('.message').append('success\n');
+            $('#confirm_modal').modal('hide'); // モーダルを閉じる
+        }, error: function (data) {
+            $('.message').append('failure\n')
+        },
+    }).done(function(data) {
+        console.log(data);
+        window.alert('成功')
+        // $(location).attr('href', '/video');
+    }).fail(function(data) {
+        console.log(data);
+        // window.alert('この条件だと追加できません')
+        $('#confirm_modal').modal('hide'); // モーダルを閉じる
+    });
+
+});
