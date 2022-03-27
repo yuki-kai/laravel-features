@@ -38,8 +38,6 @@
                     style="width:240px; height:180px;"
                 ></video>
             </div>
-            {{-- サムネイル自動生成用 --}}
-            <canvas hidden type="hidden" id="canvas" class="canvas"></canvas>
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">動画サムネイル (未選択の場合、自動的に動画の先頭が設定されます)</label>
@@ -55,6 +53,11 @@
                     style="width:240px; height:180px;"
                 >
             </div>
+
+            {{-- サムネイル自動生成用 --}}
+            <canvas hidden type="hidden" id="canvas" class="canvas"></canvas>
+            <input  hidden multiple id="auto_thumb" name="auto_thumb" accept="image/*">
+
             <button id="confirm" class="btn btn-primary">登録</button>
 
             {{-- 確認モーダル --}}

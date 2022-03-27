@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+
 use App\Models\Video;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -28,19 +30,23 @@ class VideoService
         // 動画パス取得
             // ファイル名が重複していれば連番を生成
             $video = self::renameFileNameIfConflict($request->file('video')->getClientOriginalName());
-            $video_url = $request->video->storeAs('videos', $video, 'public');
-            $video_path = Storage::disk('public')->url($video_url);
+            $video_path = Storage::putFileAs('public/videos', $request->file('video'), $video);
 
-        // サムネイルパス取得
-            // $thumb = self::renameFileNameIfConflict($request->file('thumb')->getClientOriginalName());
-            // $thumb_url = $request->thumb->storeAs('thumbnails', $thumb, 'public');
-            // $thumb_path = Storage::disk('public')->url($thumb_url);
+        // サムネイルパス取得 サムネイルが選択されていなければ自動生成
+            if ($request->file('thumb')) {
+                $thumb = self::renameFileNameIfConflict($request->file('thumb')->getClientOriginalName());
+                $thumb_path = Storage::putFileAs('public/thumbnails', $request->file('thumb'), $thumb);
+            } else {
+                list($fileName, $fileData) = self::base64ToFile($request->auto_thumb);
+                Storage::put('public/thumbnails/'.$fileName, $fileData, 'public');
+                $thumb_path = Storage::disk('local')->url('public/thumbnails/'.$fileName);
+            }
 
         $video = new Video();
         $video->create([
             'title'      => $request->title,
             'video_path' => $video_path,
-            'thumb_path' => $request->thumb_path,
+            'thumb_path' => $thumb_path,
         ]);
         return $request;
     }
@@ -52,6 +58,7 @@ class VideoService
      */
     public static function renameFileNameIfConflict($file_name)
     {
+        // ファイルが画像か動画かによってパスを変える
 
 
         if (Storage::disk('public')->exists('videos/'.$file_name)) {
@@ -67,6 +74,26 @@ class VideoService
         } else {
             return $file_name;
         }
+    }
+
+    /**
+     * ファイル名重複時のファイル名に連番の付加処理
+     *
+     * @param
+     */
+    public static function base64ToFile($base64)
+    {
+        // "date:"と"base64,"で区切る
+        list($fileInfo, $fileData) = explode(';', $base64);
+        // 拡張子を取得
+        $extension = explode('/', $fileInfo)[1];
+        // $fileDataにある"base64,"を削除する
+        list(, $fileData) = explode(',', $fileData);
+        // base64をデコード
+        $fileData = base64_decode($fileData);
+        // ランダムなファイル名生成
+        $fileName = Str::random(10). ".$extension";
+        return [$fileName, $fileData];
     }
 
 }

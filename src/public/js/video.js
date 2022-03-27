@@ -53,6 +53,13 @@ $('#confirm').on('click', function(e) {
     }
 });
 
+// 「登録」ボタン押下時にサムネイル生成
+$('#confirm').on('click', function() {
+    const thumb_info = canvas.toDataURL("image/*");
+    const auto_thumb = document.getElementById("auto_thumb");
+    auto_thumb.value = thumb_info;
+});
+
 // 動画名のバリデーション
 const titleValidation = () => {
     if (!$('#title').val()) {
@@ -132,8 +139,7 @@ $('#submit').on('click', function (e) {
         },
     }).done(function(data) {
         console.log(data);
-        window.alert('成功')
-        // $(location).attr('href', '/video');
+        $(location).attr('href', '/video');
     }).fail(function(data) {
         console.log(data);
         // window.alert('この条件だと追加できません')
