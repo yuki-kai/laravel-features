@@ -31,7 +31,7 @@
         <tbody>
             @forelse ($searched_users as $user)
                 <tr>
-                    <th>{{ $user->id }}</th>
+                    <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->age }}</td>
                     <td>{{ $user->gender }}</td>

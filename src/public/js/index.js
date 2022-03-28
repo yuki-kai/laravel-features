@@ -23,17 +23,24 @@ $(function() {
         console.log('download処理');
         workCsvData = [];
         // ユーザー情報作成
-        createUserArray();
+        // createUserArray();
         // ファイル保存
         download();
     };
 
-    const createUserArray = () => {
-        // for (let i = 0; i < 5; i++) {
-        //     workCsvData.push(i);
-        //     // console.log(i);
-        // }
-    };
+    // const createUserArray = () => {
+    //     createHeaderArray();
+    //     createBodyArray();
+    // };
+
+    // const createHeaderArray = () => {
+    // };
+
+    // const createBodyArray = () => {
+    //     const body = document.querySelectorAll('tbody > tr > td.name');
+    //     console.log(body)
+    //     console.log(body[0].innerHTML)
+    // };
 
 
     // ファイル保存
