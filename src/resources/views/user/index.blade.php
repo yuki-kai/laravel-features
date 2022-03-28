@@ -37,7 +37,7 @@
                     <td>{{ $user->gender }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <label for="showtext" class="description " name="msg">
+                        <label for="showtext" class="omitted note" name="msg">
                             {{ $user->note }}
                         </label>
                     </td>

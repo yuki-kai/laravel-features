@@ -15,10 +15,14 @@
 }
 
 /* 長文を省略 */
-.description {
+.omitted {
 	cursor: pointer;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
+    user-select: none; /* クリック表示時に文章を選択しない */
+}
+.note {
+	cursor: pointer;
 }

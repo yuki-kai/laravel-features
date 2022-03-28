@@ -76,7 +76,7 @@ $(function() {
     for (let i = 0; i < msg.length; i++) {
         msg[i].addEventListener('dblclick', (e) => {
             if (msg[i].id === e.target.id){
-                msg[i].classList.toggle('description');
+                msg[i].classList.toggle('omitted');
             }
         });
     }
