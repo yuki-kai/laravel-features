@@ -1,0 +1,28 @@
+
+/* CSV保存ボタン */
+#output_file {
+    background-color: #007BFF;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 46px;
+    border-radius: 4px;
+    border: solid 1px #FFFFFF;
+    cursor: pointer;
+    width: 160px;
+    height: 46px;
+    text-align: center;
+}
+
+/* 長文を省略 */
+.omitted {
+	cursor: pointer;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+    user-select: none; /* クリック表示時に文章を選択しない */
+}
+.note {
+	cursor: pointer;
+}

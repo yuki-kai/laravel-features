@@ -1,6 +1,7 @@
 @extends('layout.header')
 @section('title', 'ユーザー一覧画面')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
 <div class="container">
     {{-- メニュー --}}
@@ -10,23 +11,36 @@
             {{ Form::text('keyword', request('keyword'), ['class' => 'me-2', 'placeholder' => '名前、メールアドレスで検索']) }}
             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
         </form>
+        <div>
+            <span id="output_file" accept="text/csv">CSV保存</span>
+        </div>
     </div>
 
     <table class="table table-hover" style="table-layout:fixed;">
         <thead>
             <tr>
-                <th>@sortablelink('id', 'ID')</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th>操作</th>
+                <th width="5%">@sortablelink('id', 'ID')</th>
+                <th width="20%">名前</th>
+                <th width="10%">年齢</th>
+                <th width="10%">性別</th>
+                <th width="25%">メールアドレス</th>
+                <th width="20%">備考</th>
+                <th width="10%">操作</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($searched_users as $user)
                 <tr>
-                    <th>{{ $user->id }}</th>
+                    <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->age }}</td>
+                    <td>{{ $user->gender }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                        <label for="showtext" class="omitted note" name="msg">
+                            {{ $user->note }}
+                        </label>
+                    </td>
                     <td>
                         <div class="">
                             <form action="{{ route('user.edit', $user->id) }}" method="GET">

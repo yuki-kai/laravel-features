@@ -43,14 +43,18 @@ docker psでコンテナ確認<br>
 
 
 ## Seeder/Factoryのテストデータ作成
-#### sedder file作成
-`php artisan make:seeder hogeSeeder`
+#### seeder作成
+`php artisan make:seeder HogeSeeder`
 
 #### seeder全て実行
 `php artisan db:seed --class=DatabaseSeeder`
 
 #### seeder単体実行
-`php artisan db:seed --class=hogeSeeder`
+`php artisan db:seed --class=HogeSeeder`
+
+#### factory作成
+`php artisan make:factory HogeFactory`
+
 
 
 ## キャッシュクリア系
