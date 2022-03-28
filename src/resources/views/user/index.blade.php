@@ -19,10 +19,13 @@
     <table class="table table-hover" style="table-layout:fixed;">
         <thead>
             <tr>
-                <th>@sortablelink('id', 'ID')</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th>操作</th>
+                <th width="5%">@sortablelink('id', 'ID')</th>
+                <th width="20%">名前</th>
+                <th width="10%">年齢</th>
+                <th width="10%">性別</th>
+                <th width="25%">メールアドレス</th>
+                <th width="20%">備考</th>
+                <th width="10%">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +33,14 @@
                 <tr>
                     <th>{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->age }}</td>
+                    <td>{{ $user->gender }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                        <label for="showtext" class="description " name="msg">
+                            {{ $user->note }}
+                        </label>
+                    </td>
                     <td>
                         <div class="">
                             <form action="{{ route('user.edit', $user->id) }}" method="GET">

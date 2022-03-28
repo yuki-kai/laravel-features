@@ -71,5 +71,14 @@ $(function() {
         // }
     });
 
+    // 省略されている長文をクリックで表示・非表示に切り替え
+    const msg = document.getElementsByName('msg')
+    for (let i = 0; i < msg.length; i++) {
+        msg[i].addEventListener('dblclick', (e) => {
+            if (msg[i].id === e.target.id){
+                msg[i].classList.toggle('description');
+            }
+        });
+    }
 
 });

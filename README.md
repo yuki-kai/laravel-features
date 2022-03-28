@@ -11,6 +11,7 @@ PHP/LaravelやJavaScriptの開発で使えそうな機能をまとめた
     https://qiita.com/apprentice123/items/ac0645f79d877a0bd33d<br>
     https://qiita.com/haserror/items/e7daeae404b675f739e1
 4. 更新・削除時の状態を保持してリダイレクト<br>
+5. 省略された文章の表示・非表示切り替え<br>
 
 ## 画像・動画登録の機能
 1. ファイル名とパスを指定した保存

@@ -13,3 +13,12 @@
     height: 46px;
     text-align: center;
 }
+
+/* 長文を省略 */
+.description {
+	cursor: pointer;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
