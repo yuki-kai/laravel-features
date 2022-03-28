@@ -32,15 +32,12 @@ class VideoController extends Controller
     }
 
     /**
-     * 動画登録
+     * 動画登録 (非同期処理)
      *
      * @return view
      */
     public function store(Request $request)
     {
-        $hoge = VideoService::storeVideo($request);
-        return $hoge;
-
-        return redirect()->route('video.index');
+        return VideoService::storeVideo($request);
     }
 }

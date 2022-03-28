@@ -23,9 +23,7 @@ class VideoService
     public static function storeVideo($request)
     {
         // 発行されるSQL文をログに吐く
-        // DB::listen(function ($query) {
-        //     Log::info("Query Time:{$query->time}s] $query->sql");
-        // });
+        // DB::listen(function ($query) { Log::info("Query Time:{$query->time}s] $query->sql"); });
 
         // 動画パス取得
             // ファイル名が重複していれば連番を生成
@@ -48,7 +46,7 @@ class VideoService
             'video_path' => $video_path,
             'thumb_path' => $thumb_path,
         ]);
-        return $request;
+        return response()->json($request, 200);
     }
 
     /**
@@ -59,14 +57,15 @@ class VideoService
     public static function renameFileNameIfConflict($file_name)
     {
         // ファイルが画像か動画かによってパスを変える
+        $file_extension = self::isImgOrVideo($file_name);
+        $path = ($file_extension === 'video' ? 'videos/' : 'thumbnails/');
 
-
-        if (Storage::disk('public')->exists('videos/'.$file_name)) {
+        if (Storage::disk('public')->exists($path.$file_name)) {
             // ファイル名を拡張子と分離
             $only_name = substr($file_name, 0, strrpos($file_name, '.'));
             $extension = substr($file_name, strrpos($file_name, '.'));
             $i = 1;
-            while (Storage::disk('public')->exists('videos/'.$file_name)) {
+            while (Storage::disk('public')->exists($path.$file_name)) {
                 $file_name = $only_name .'_'. $i . $extension;
                 $i++;
             }
@@ -74,6 +73,26 @@ class VideoService
         } else {
             return $file_name;
         }
+    }
+
+    /**
+     * ファイルが画像か動画か判定
+     *
+     * @param 動画か画像file
+     */
+    public static function isImgOrVideo($file)
+    {
+        $image_extension = '/\.gif$|\.png$|\.jpg$|\.jpeg$|\.bmp$|\.svg$/i';
+        // ファイルが画像ファイルだった場合
+        if (preg_match($image_extension, $file)) {
+            return 'image';
+        }
+        $video_extension = '/\.mp4$|\.mov$|\.wmv$|\.mpg$|\.mkv$|\.avi$/i';
+        // ファイルが動画ファイルだった場合
+        if (preg_match($video_extension, $file)){
+            return 'video';
+        }
+        return 'image'; // デフォルトはimageを返す
     }
 
     /**
