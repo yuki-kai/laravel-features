@@ -1,6 +1,7 @@
 @extends('layout.header')
 @section('title', 'ユーザー一覧画面')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
 <div class="container">
     {{-- メニュー --}}
@@ -10,6 +11,9 @@
             {{ Form::text('keyword', request('keyword'), ['class' => 'me-2', 'placeholder' => '名前、メールアドレスで検索']) }}
             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
         </form>
+        <div>
+            <span id="output_file" accept="text/csv">CSV保存</span>
+        </div>
     </div>
 
     <table class="table table-hover" style="table-layout:fixed;">
