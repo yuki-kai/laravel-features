@@ -28,12 +28,14 @@ class VideoService
         // 動画パス取得
             // ファイル名が重複していれば連番を生成
             $video = self::renameFileNameIfConflict($request->file('video')->getClientOriginalName());
-            $video_path = Storage::putFileAs('public/videos', $request->file('video'), $video);
+            Storage::putFileAs('public/videos', $request->file('video'), $video);
+            $video_path = Storage::disk('local')->url('public/videos/'.$video);
 
         // サムネイルパス取得 サムネイルが選択されていなければ自動生成
             if ($request->file('thumb')) {
                 $thumb = self::renameFileNameIfConflict($request->file('thumb')->getClientOriginalName());
-                $thumb_path = Storage::putFileAs('public/thumbnails', $request->file('thumb'), $thumb);
+                Storage::putFileAs('public/thumbnails', $request->file('thumb'), $thumb);
+                $thumb_path = Storage::disk('local')->url('public/thumbnails/'.$thumb);
             } else {
                 list($fileName, $fileData) = self::base64ToFile($request->auto_thumb);
                 Storage::put('public/thumbnails/'.$fileName, $fileData, 'public');

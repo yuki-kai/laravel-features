@@ -26,3 +26,46 @@
 .note {
 	cursor: pointer;
 }
+
+/* 動画一覧の「もっと見る」 */
+.list-header {
+    /* background-color: grey; */
+    font-size: 0; /* ヘッダーの隙間を無くすため */
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+.list-header span {
+    display: inline-block;
+    padding: 8px;
+    font-size: 16px; /* 上でフォントサイズを0にしてるのでここで戻す */
+}
+.list-header span a {
+    text-decoration: none;
+}
+.ds-edit-button form {
+    display: inline;
+}
+ul {
+    list-style: none;
+    padding-left: 0 !important;
+    /* display: row; */
+}
+.list {
+    table-layout: fixed;
+
+}
+.list li span {
+    /* line-height: 80px; */
+    padding: 8px;
+    /* word-break: break-all; */
+    overflow-wrap : break-word;
+}
+.list li {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+.list li.is-hidden {
+    opacity: 0;
+    height: 0;
+    border: 0px none;
+}

@@ -1,6 +1,7 @@
 @extends('layout.header')
 @section('title', '動画一覧画面')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
 <div class="container">
     {{-- メニュー --}}
@@ -12,40 +13,39 @@
         </form>
     </div> --}}
 
-    {{-- <table class="table table-hover" style="table-layout:fixed;">
-        <thead>
-            <tr>
-                <th>@sortablelink('id', 'ID')</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($searched_users as $user)
-                <tr>
-                    <th>{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
+    <div>
+        <div class="list-header">
+            <span style="width:10%">@sortablelink('id', 'ID')</span>
+            <span style="width:30%">サムネイル</span>
+            <span style="width:30%">タイトル</span>
+            <span style="width:30%">操作</span>
+        </div>
+        <ul class="list">
+            @forelse ($videos as $video)
+                <li>
+                    <span style="width:10%">{{ $video->id }}</span>
+                    <span style="width:30%">
+                        <img src="{{ $video->thumb_path }}" alt="画像" style="width:100px; height:80px;">
+                    </span>
+                    <span style="width:30%">{{ $video->title }}</span>
+                    <span style="width:30%" class="ds-edit-button">
                         <div class="">
-                            <form action="{{ route('user.edit', $user->id) }}" method="GET">
+                            <form action="{{ route('user.edit', $video->id) }}" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm">更新</button>
                             </form>
-                            <button class="btn btn-primary btn-sm delete" data-bs-id="{{ $user->id }}" id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>
+                            <button class="btn btn-primary btn-sm delete" data-bs-id="{{ $video->id }}" id="{{ $video->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">削除</button>
                         </div>
-                    </td>
-                </tr>
+                    </span>
+                </li>
             @empty
-                <tr>
-                    <td colspan="4">
-                        <div class="alert alert-warning" role="alert">データがありません</div>
-                    </td>
-                </tr>
+                <div class="alert alert-warning" role="alert">動画がありません</div>
             @endforelse
-        </tbody>
-    </table> --}}
+        </ul>
+    </div>
 
+    @if (count($videos) > 10)
+        <button class="more-show btn btn-primary btn-sm">もっと見る</button>
+    @endif
     {{-- <div class="d-flex justify-content-center">
         <span>
             全{{ $searched_users->total() }}件中
@@ -78,7 +78,18 @@
 
 {{-- <form action='' id='delete_form' method='POST'>@csrf</form> --}}
 
-{{-- <script src="{{ asset('js/index.js') }}"></script> --}}
-
+<script>
+    // もっと見るの処理
+    let show = 10; // 最初に表示する件数
+    let add = 10;  // 「もっと見る」で表示したい件数
+    let contents = '.list li'; // 対象のlist
+    $(contents + ':nth-child(n + ' + (show + 1) + ')').addClass('is-hidden');
+    $('.more-show').on('click', function () {
+    $(contents + '.is-hidden').slice(0, add).removeClass('is-hidden');
+        if ($(contents + '.is-hidden').length == 0) {
+            $('.more-show').fadeOut();
+        }
+    });
+</script>
 
 @endsection

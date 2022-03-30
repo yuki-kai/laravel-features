@@ -18,7 +18,9 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        return view('video.index');
+        $videos = Video::sortable()->get();
+        
+        return view('video.index', compact('videos'));
     }
 
     /**
