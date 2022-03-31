@@ -13,18 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sortable;
 
-    public $sortable = ['id', 'name', 'email'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    public $sortable = ['id', 'age', 'gender'];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +34,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function genderSortable($query, $direction)
+    {
+        return $query->orderBy('gender', $direction)->orderBy('id', $direction);
+    }
 }

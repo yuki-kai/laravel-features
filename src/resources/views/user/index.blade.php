@@ -21,8 +21,8 @@
             <tr>
                 <th width="5%">@sortablelink('id', 'ID')</th>
                 <th width="20%">名前</th>
-                <th width="10%">年齢</th>
-                <th width="10%">性別</th>
+                <th width="10%">@sortablelink('age', '年齢')</th>
+                <th width="10%">@sortablelink('gender', '性別')</th>
                 <th width="25%">メールアドレス</th>
                 <th width="20%">備考</th>
                 <th width="10%">操作</th>
@@ -33,8 +33,13 @@
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
-                    <td>{{ $user->age }}</td>
-                    <td>{{ $user->gender }}</td>
+                    <td>{{ $user->age }}歳</td>
+                    <td>
+                        @if ($user->gender === 1) 男性
+                        @elseif ($user->gender === 2) 女性
+                        @else 指定なし
+                        @endif
+                    </td>
                     <td>{{ $user->email }}</td>
                     <td>
                         <label for="showtext" class="omitted note" name="msg">

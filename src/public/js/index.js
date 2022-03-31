@@ -23,24 +23,41 @@ $(function() {
         console.log('download処理');
         workCsvData = [];
         // ユーザー情報作成
-        // createUserArray();
+        createUserArray();
         // ファイル保存
         download();
     };
 
-    // const createUserArray = () => {
-    //     createHeaderArray();
-    //     createBodyArray();
-    // };
+    const createUserArray = () => {
+        createHeaderArray();
+        createBodyArray();
+    };
 
-    // const createHeaderArray = () => {
-    // };
+    // ユーザー一覧のヘッダー行を作成
+    const createHeaderArray = () => {
+        const rowData = [];
+        const head = document.querySelectorAll('thead > tr > th');
+        head.forEach(column => {
+            rowData.push(`"${column.innerText}"`);
+        });
+        workCsvData.push(rowData);
+    };
 
-    // const createBodyArray = () => {
-    //     const body = document.querySelectorAll('tbody > tr > td.name');
-    //     console.log(body)
-    //     console.log(body[0].innerHTML)
-    // };
+    // ユーザー一覧のボディを作成
+    const createBodyArray = () => {
+        // 一覧から「操作」を除いた全ての要素を取得
+        const body = document.querySelectorAll('tbody > tr > td:not(:last-child)');
+        const row = document.querySelectorAll('tbody > tr');
+        console.log(row)
+        // for () {
+
+        // }
+
+        body.forEach(column => {
+            console.log(column.innerText)
+        });
+        // console.log(body)
+    };
 
 
     // ファイル保存
