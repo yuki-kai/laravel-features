@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\JSController;
 
 
 // 一覧画面
@@ -17,3 +18,6 @@ Route::get('/video', [VideoController::class, 'index'])->name('video.index');
 Route::get('/video/create', [VideoController::class, 'create'])->name('video.create');
 Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 
+// JavaScript
+Route::get('/js/fizzbuzz', [JSController::class, 'fizzbuzz'])->name('js.fizzbuzz');
+Route::get('/js/promise', [JSController::class, 'promise'])->name('js.promise');

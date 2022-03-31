@@ -54,6 +54,16 @@
                 <li><a class="dropdown-item" href="{{ route('video.index') }}">動画一覧画面</a></li>
             </ul>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                JavaScript関連
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ route('js.fizzbuzz') }}">FizzBuzz</a></li>
+                <li><a class="dropdown-item" href="{{ route('js.promise') }}">Promise</a></li>
+            </ul>
+        </li>
+
     </ul>
 </header>
 
