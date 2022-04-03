@@ -2,11 +2,12 @@
 PHP/LaravelやJavaScriptの開発で使えそうな機能をまとめた
 
 # 環境構築
-`cp .env.example .env`
+`cp .env.example .env`<br>
 パスワード設定<br>
 
 appコンテナ内で<br>
 `composer install`
+`php artisan key:generate`
 `php artisan storage:link`
 `php artisan migrate`
 
