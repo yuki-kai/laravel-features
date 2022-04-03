@@ -3,7 +3,12 @@ PHP/LaravelやJavaScriptの開発で使えそうな機能をまとめた
 
 # 環境構築
 `cp .env.example .env`
-`docker compose exec app composer install`
+パスワード設定<br>
+
+appコンテナ内で<br>
+`composer install`
+`php artisan storage:link`
+`php artisan migrate`
 
 
 ## 一覧画面の機能全般
