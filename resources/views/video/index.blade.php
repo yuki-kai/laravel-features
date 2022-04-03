@@ -38,7 +38,11 @@
                     </span>
                 </li>
             @empty
-                <div class="alert alert-warning" role="alert">動画がありません</div>
+                <tr>
+                    <td colspan="7">
+                        <div class="alert alert-warning" role="alert">動画がありません</div>
+                    </td>
+                </tr>
             @endforelse
         </ul>
     </div>

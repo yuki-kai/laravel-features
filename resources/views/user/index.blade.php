@@ -57,7 +57,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">
+                    <td colspan="7">
                         <div class="alert alert-warning" role="alert">データがありません</div>
                     </td>
                 </tr>

@@ -24,8 +24,8 @@ docker psでコンテナ確認<br>
 #### rootユーザーでログイン
 `mysql -u root -p`
 
-#### 
-
+#### データベース作成
+`CREATE DATABASE データベース名;`
 
 ## MVC作成
 #### コントローラーの作成
