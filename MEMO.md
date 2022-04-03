@@ -19,6 +19,10 @@ docker psでコンテナ確認<br>
 #### リモートリポジトリのファイルをgit管理から外す
 `git rm --cached 削除したいファイル`
 
+#### リモートリポジトリのブランチをローカルにクローン
+`git branch -r`
+`git checkout -b develop origin/develop`
+
 
 ## MySQL系
 #### rootユーザーでログイン
