@@ -14,9 +14,18 @@
         <div>
             <span id="output_file" accept="text/csv">CSV保存</span>
         </div>
+        <div class="d-flex justify-content-center">
+            <span>
+                全{{ $searched_users->total() }}件中
+                {{ ($searched_users->currentPage() -1) * $searched_users->perPage() + 1 }} -
+                {{ (($searched_users->currentPage() -1) * $searched_users->perPage() + 1) +
+                (count($searched_users) - 1) }}件
+            </span>
+            {{ $searched_users->appends(request()->query())->links('vendor.pagination.default') }}
+        </div>
     </div>
 
-    <table class="table table-hover" style="table-layout:fixed;">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th width="5%">@sortablelink('id', 'ID')</th>
@@ -65,15 +74,7 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-center">
-        <span>
-            全{{ $searched_users->total() }}件中
-            {{ ($searched_users->currentPage() -1) * $searched_users->perPage() + 1 }} -
-            {{ (($searched_users->currentPage() -1) * $searched_users->perPage() + 1) +
-            (count($searched_users) - 1) }}件
-        </span>
-        {{ $searched_users->appends(request()->query())->links('vendor.pagination.default') }}
-    </div>
+    <button id="scroll_top">TOP</button>
 </div>
 
 {{-- 削除確認モーダル --}}

@@ -105,4 +105,17 @@ $(function() {
         });
     }
 
+    // ページ最上部にスクロールで戻る
+    $('#scroll_top').on('click', function() {
+        window.scroll({top: 0, behavior: 'smooth'});
+    });
+    // ある程度スクロールしたらボタン表示
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 500) {
+            $('#scroll_top').css('opacity', 1);
+        } else if(window.pageYOffset < 500) {
+            $('#scroll_top').css('opacity', 0);
+        }
+    });
+
 });

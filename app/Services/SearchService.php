@@ -34,7 +34,7 @@ class SearchService
             $searched_users = $query
                 ->sortable()
                 // ->where('name', $name)
-                ->paginate(10);
+                ->paginate(30);
         }
         return [$searched_users];
     }
