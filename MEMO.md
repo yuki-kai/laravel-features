@@ -1,5 +1,8 @@
 # よく使うコマンドのまとめ
 
+#### 課題
+## dockerのappコンテナに入った時に今はwwwになるが、laravel-featuresのソースがあるところにしたい
+
 ## docker系
 #### コンテナ起動
 `docker-compose up -d`

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "===== Start !!======"
-docker compose exec app composer install
+docker compose exec db composer
